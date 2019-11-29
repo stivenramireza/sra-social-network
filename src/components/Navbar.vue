@@ -3,8 +3,8 @@
         <v-app-bar app>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title class="headline text-uppercase">
-                <router-link :to="{ name: 'home' }">
-                <span>SRA Social Network</span>
+                <router-link :to="{ name: 'home' }" style="text-decoration: none">
+                <span style="color: black">SRA Social Network</span>
                 </router-link>
             </v-toolbar-title>
             <v-spacer></v-spacer>
@@ -58,8 +58,8 @@ export default {
             drawer: false,
             items: [
                 { title: 'Home', icon: 'fas fa-address-card', to: { name: 'home'}},
-                { title: 'Account', icon: 'fas fa-address-card', to: { name: 'login'}},
-                { title: 'Admin', icon: 'fas fa-address-card', to: { name: 'admin'}}
+                { title: 'Admin', icon: 'fas fa-address-book', to: { name: 'admin'}},
+                { title: 'Chat', icon: 'fas fa-american-sign-language-interpreting', to: { name: 'chat'}}
             ]
         }
     },

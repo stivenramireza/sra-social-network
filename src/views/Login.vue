@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 import { firebase, auth, db } from '@/firebase'
 import router from '@/router'
 export default {
@@ -41,6 +41,7 @@ export default {
     },
     methods: {
         ...mapMutations(['newUser']),
+        ...mapActions(['setUser']),
         facebook(){
             console.log('facebook')
             const provider = new firebase.auth.FacebookAuthProvider()
@@ -58,20 +59,8 @@ export default {
                 const user = result.user
                 console.log(user)
 
-                // User
-                const userObject = {
-                    name: user.displayName,
-                    email: user.email,
-                    uid: user.uid,
-                    photo: user.photoURL
-                }
-                this.newUser(userObject)
-
-                // Save in Firestore
-                await db.collection('users').doc(userObject.uid).set(
-                    userObject
-                )
-                console.log('User has been saved successfully')
+                this.setUser(user)
+                
                 router.push({name: 'home'})
             } catch (error) {
                 console.log(error)
